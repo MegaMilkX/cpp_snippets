@@ -50,4 +50,15 @@ inline std::string find_last_modified_file(const std::string& filename)
   return result;
 }
 
+inline HMODULE this_module_handle()
+{
+  HMODULE h = NULL;
+  GetModuleHandleExW(
+    GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+    reinterpret_cast<LPCWSTR>(&this_module_handle),
+    &h
+  );
+  return h;
+}
+
 #endif
